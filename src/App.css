@@ -1,38 +1,240 @@
-.App {
+
+.blue-button {
+  background-color: #0064FF;
+  width: 80vw;
+  max-width: 600px;
+  height: 6.5vh;
+  min-height: 40px;
+  max-height: 60px;
+  filter: drop-shadow(0px 4px 4px #9A9A9A);
+  border-radius: 10px;
+  border :none;
+  color: white;
+}
+
+.login-input {
+  background-color: #E0E0E0;
+  width: 80vw;
+  max-width: 600px;
+  height: 6.5vh;
+  min-height: 40px;
+  max-height: 60px;
+  filter: drop-shadow(0px 4px 4px #DADADA);
+  border: none;
+  border-radius: 10px;
+  padding: 0 15px;
+}
+.login-input::placeholder {
+  color: #9E9E9E;
+  text-decoration: none;
+}
+.login-input:focus {
+  outline: none;
+}
+
+.margin-1{
+  margin : 12vh 0 0 0;
+}
+
+.margin-2 {
+  margin : 3rem 0 0 0;
+}
+
+.back-icon {
+  color: black;
+  width: 46px;
+  height: 46px;
+}
+
+.home-icon {
+  width: 35px;
+  height: 35px;
+  margin-top: 7px;
+  margin-right: 9px;
+}
+
+.back-navbar {
+    padding: 16px 10px;
+    margin-left: 15px;
+}
+
+.back-home-navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-center{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.login-page-header {
+  padding-left: 10vw;
+  text-align: left;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  width: 100vw;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.marginFooter {
+  margin-bottom: 10vh;
+}
+
+.warning-message {
+  right: 10vw;
+  left: 10vw;
+  min-height: 25px;
+  max-width: 600px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.margin-3{
+  margin-top: 25vh;
+}
+
+.signup-box {
+  background-color: #f0f0f0;
+  padding: 30px;
+  margin: 1vh 0 0 0;
+
+}
+.signup-go{
+  margin-bottom: 10vh;
+}
+
+.container {
+  max-width: 100%;
+}
+
+
+.input-under-bar {
+  width: 80vw;
+  max-width: 600px;
+  height: 6.5vh;
+  min-height: 40px;
+  max-height: 60px;
+  border: none;
+  border-bottom: solid black 1.6px;
+}
+.input-under-bar::placeholder {
+  color: #9E9E9E;
+  text-decoration: none;
+}
+.input-under-bar:focus {
+  outline: none;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #9e9e9e;
+  height: 6.5vh;
+  min-height: 40px;
+  max-height: 60px;
+  width: 120px;
+  border: none;
+}
+.btn-secondary::after {
+  display: none;
+}
+.btn-secondary:first-child:active { 
+  background-color: transparent;
+  color: #9e9e9e;
+}
+
+.email-input {
+  display: flex;
+  text-align: center;
+  justify-content:center;
+  align-items: flex-end;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.mail-box {
+  display:flex;
+  align-items: center;
+  border-bottom: solid black 1.6px;
+}
+
+.e9e9e9 {
+  color: #9E9E9E;
+
+}
+.logo-style {
+  width: 40vw;
+}
+
+.StartLogo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.search-bar {
+  background-color: #E0E0E0;
+  width: 100vw;
+  height: 38px;
+  filter: drop-shadow(0px 4px 4px #DADADA);
+  border: none;
+  border-radius: 10px;
+  padding: 0 40px;
+  margin: 8px;
+}
+.search-bar::placeholder {
+  color: #9E9E9E;
+  text-decoration: none;
+}
+.search-bar:focus {
+  outline: none;
+}
+.search-icon{
+  height: 21px;
+  width: 21px;
+  position: absolute;
+  z-index: 1;
+  margin-top: 16px;
+  margin-left: 20px;
+}
+.mypage-icon {
+  width: 37px;
+  height: 37px;
+  margin-top: 10px;
+  margin-right: 7px;
+}
+.map-place {
+  margin-top: 5px;
+  border: red solid 5px;
+  height: calc(100vh - 58px);
+  position: relative;
+}
+.recommend-icon{
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+}
+.mypage-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35vh;
+}
+.fafafa{
+  background-color: #fafafa;
+}
+.mypage-column{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.mypage-box{
+  width: 100%;
+  border-bottom: #bdbdbd solid 1px;
+  padding: 25px;
 }

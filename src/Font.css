@@ -1,0 +1,146 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "regular";
+  src: url("../src/font/NotoSansKR-Regular.otf");
+}
+
+@font-face {
+  font-family: "medium";
+  src: url("../src/font/NotoSansKR-Medium.otf");
+}
+
+@font-face {
+  font-family: "bold";
+  src: url("../src/font/NotoSansKR-Bold.otf");
+}
+
+.ft32b{
+  font-family: 'regular';
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.ft32r{
+  font-family: 'regular';
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.ft28b{
+  font-family: 'regular';
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.ft28r{
+  font-family: 'regular';
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.ft24b{
+  font-family: 'regular';
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.ft24r{
+  font-family: 'regular';
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.ft20b{
+  font-family: 'regular';
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.ft20r{
+  font-family: 'regular';
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.ft16b{
+  font-family: 'regular';
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ft16r{
+  font-family: 'regular';
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.ft14b{
+  font-family: 'regular';
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ft14r{
+  font-family: 'regular';
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.ft12b{
+  font-family: 'regular';
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ft12r{
+  font-family: 'regular';
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.ft10b{
+  font-family: 'regular';
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.ft10r{
+  font-family: 'regular';
+  font-size: 10px;
+  font-weight: 400;
+}
+
+@media (min-width: 700px), (min-height: 900px) {
+  .ft32b, .ft32r {
+    font-size: 34px;
+  }
+
+  .ft28b, .ft28r {
+    font-size: 30px;
+  }
+
+  .ft24b, .ft24r {
+    font-size: 26px;
+  }
+
+  .ft20b, .ft20r {
+    font-size: 22px;
+  }
+
+  .ft16b, .ft16r {
+    font-size: 18px;
+  }
+
+  .ft14b, .ft14r {
+    font-size: 16px;
+  }
+
+  .ft12b, .ft12r {
+    font-size: 14px;
+  }
+
+  .ft10b, .ft10r {
+    font-size: 12px;
+  }
+}
