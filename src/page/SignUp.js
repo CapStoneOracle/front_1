@@ -13,7 +13,6 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [emailUser, setEmailUser] = useState('');
   const [emailBase, setEmailBase] = useState('');
   const [emailDomain, setEmailDomain] = useState('');
   const [modalHeader, setModalHeader] = useState('');

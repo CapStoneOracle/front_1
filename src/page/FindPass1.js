@@ -15,7 +15,7 @@ const FindPass1 = () => {
       <div className='text-center'> 
         <div className='login-page-header mt-5 ft28b'>비밀번호 찾기</div>
         <div className='margin-3'> 
-          <InputUnderBar item="아이디를 입력해주세요." />
+          <InputUnderBar item="아이디를 입력해주세요." type="아이디"/>
           <WarningMessage style={{marginTop : '10px'}} item1={'아이디가 존재하지 않습니다.'} item2={'############'}/>
         </div>
         
