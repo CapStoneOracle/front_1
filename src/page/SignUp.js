@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BackNavbar from '../component/BackNavbar';
 import InputUnderBar from '../component/InputUnderBar';
 import WarningMessage from '../component/WarningMessage';
@@ -13,7 +13,24 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [emailUser, setEmailUser] = useState('');
+  const [emailBase, setEmailBase] = useState('');
+  const [emailDomain, setEmailDomain] = useState('');
   const [modalHeader, setModalHeader] = useState('');
+
+  useEffect(() => {
+    if (emailBase && emailDomain) {
+      console.log("이메일 조합: ", emailBase + emailDomain);}
+  }, [emailBase, emailDomain]);
+
+  const handleEmailBaseChange = (event) => {
+    setEmailBase(event.target.value);
+  };
+
+  const handleEmailDomainSelect = (domain) => {
+    setEmailDomain(domain);
+  };
+
 
   const handlePasswordCheck = () => {
     if (password === confirmPassword) {
@@ -47,12 +64,15 @@ const SignUp = () => {
             style={{ maxWidth: '460px', width: '50vw' }}
             item="이메일을 입력해주세요."
             type="이메일"
+            value={emailBase}
+            onChange={handleEmailBaseChange}
           />
           <div className="mail-box">
             <div className="ft20b e9e9e9">@</div>
-            <EmailDropDown />
+            <EmailDropDown onSelectDomain={handleEmailDomainSelect} />
           </div>
         </div>
+
         <WarningMessage item1={'###################'} item2={'인증번호 발송'} />
 
         <div className="signup-box">
