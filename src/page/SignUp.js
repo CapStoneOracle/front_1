@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BackNavbar from '../component/BackNavbar';
 import InputUnderBar from '../component/InputUnderBar';
 import WarningMessage from '../component/WarningMessage';
@@ -7,10 +7,21 @@ import { Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import EmailDropDown from '../component/EmailDropDown';
 import DuplicateCheck from '../component/DuplicateCheck';
-import MacthCheck from '../component/MacthCheck';
+import MatchCheck from '../component/MatchCheck';
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [modalHeader, setModalHeader] = useState('');
+
+  const handlePasswordCheck = () => {
+    if (password === confirmPassword) {
+      setModalHeader('암호가 일치합니다.');
+    } else {
+      setModalHeader('암호가 일치하지 않습니다.');
+    }
+  };
 
   return (
     <Container>
@@ -25,6 +36,7 @@ const SignUp = () => {
             className="mt-4"
             style={{ maxWidth: '520px', width: '63vw' }}
             item="아이디를 입력해주세요."
+            type="아이디"
           />
           <DuplicateCheck item="중복확인" type="아이디" />
         </div>
@@ -34,6 +46,7 @@ const SignUp = () => {
             className="mt-4"
             style={{ maxWidth: '460px', width: '50vw' }}
             item="이메일을 입력해주세요."
+            type="이메일"
           />
           <div className="mail-box">
             <div className="ft20b e9e9e9">@</div>
@@ -46,6 +59,7 @@ const SignUp = () => {
           <InputUnderBar
             style={{ backgroundColor: '#f0f0f0' }}
             item="인증번호를 입력해주세요."
+            type="인증번호"
           />
           <WarningMessage
             style={{ marginTop: '30px' }}
@@ -54,25 +68,33 @@ const SignUp = () => {
           />
         </div>
 
-        <InputUnderBar
-          className="mt-4" style={{ maxWidth: '600px'}}
-          item="암호를 입력해주세요.(최소 8자 최대 12자)"
-        />
-
-        <div className="input-check">
           <InputUnderBar
             className="mt-4"
-            style={{ maxWidth: '520px', width: '63vw' }}
-            item="암호를 재입력해주세요."
+            style={{ maxWidth: '600px'}}
+            item="암호를 입력해주세요.(최소 8자 최대 12자)"
+            type="암호"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
-          <MacthCheck item="일치 확인"/>
-        </div>
+
+          <div className="input-check">
+            <InputUnderBar
+              className="mt-4"
+              style={{ maxWidth: '520px', width: '63vw' }}
+              item="암호를 재입력해주세요."
+              type="재입력암호"
+              value={confirmPassword}
+              onChange={e => setConfirmPassword(e.target.value)}
+            />
+            <MatchCheck item="일치 확인" onCheck={handlePasswordCheck} modalHeader={modalHeader} />
+          </div>
 
         <div className="input-check">
           <InputUnderBar
             className="mt-4"
-            style={{ maxWidth: '520px', width: '63vw' }}
+            style={{ maxWidth: '520px', width: '65vw' }}
             item="별명을 입력해주세요."
+            type="별명"
           />
           <DuplicateCheck item="중복확인" type="별명" />
         </div>

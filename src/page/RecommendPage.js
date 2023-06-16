@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import BackHomeNavbar from './../component/BackHomeNavbar';
 
 const RecommendPage = () => {
   const location = useLocation();
@@ -23,6 +24,7 @@ const RecommendPage = () => {
 
   return (
     <div>
+      <BackHomeNavbar/>
       {restaurants.length > 0 ? (
         restaurants.map((restaurant) => (
           <div

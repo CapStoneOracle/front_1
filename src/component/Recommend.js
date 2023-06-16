@@ -4,7 +4,6 @@ import { useNavigate, useLocation } from 'react-router-dom'
 const Recommend = ({restaurants}) => {
   const navigate = useNavigate();
 
-
   const goRecommend = () => {
     navigate('/home/recommend_page', { state: { restaurants } });
   };
