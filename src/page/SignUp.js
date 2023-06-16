@@ -68,23 +68,23 @@ const SignUp = () => {
           />
         </div>
 
-          <InputUnderBar
-            className="mt-4"
-            style={{ maxWidth: '600px'}}
-            item="암호를 입력해주세요.(최소 8자 최대 12자)"
-            type="암호"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
+            <InputUnderBar
+              className="mt-4"
+              style={{ maxWidth: '600px'}}
+              item="암호를 입력해주세요.(최소 8자 최대 12자)"
+              type="암호"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
 
           <div className="input-check">
             <InputUnderBar
-              className="mt-4"
-              style={{ maxWidth: '520px', width: '63vw' }}
-              item="암호를 재입력해주세요."
-              type="재입력암호"
-              value={confirmPassword}
-              onChange={e => setConfirmPassword(e.target.value)}
+                  className="mt-4"
+                  style={{ maxWidth: '520px', width: '63vw' }}
+                  item="암호를 재입력해주세요."
+                  type="재입력암호"
+                  value={confirmPassword}
+                  onChange={e => setConfirmPassword(e.target.value)}
             />
             <MatchCheck item="일치 확인" onCheck={handlePasswordCheck} modalHeader={modalHeader} />
           </div>

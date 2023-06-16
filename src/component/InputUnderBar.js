@@ -1,11 +1,6 @@
-import React, { useState } from 'react';
-
-const InputUnderBar = ({ className, item, style, type }) => {
-  const [inputValue, setInputValue] = useState('');
-
+const InputUnderBar = ({ className, item, style, type, value, onChange }) => {
   const handleBlur = (event) => {
     const value = event.target.value;
-    setInputValue(value);
     console.log(`${type}:`, value);
   };
 
@@ -16,8 +11,9 @@ const InputUnderBar = ({ className, item, style, type }) => {
         type='text'
         placeholder={item}
         style={style}
-        defaultValue={inputValue}
+        value={value}
         onBlur={handleBlur}
+        onChange={onChange}
       />
     </div>
   );
