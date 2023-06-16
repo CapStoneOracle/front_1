@@ -237,3 +237,68 @@
   border-bottom: #bdbdbd solid 1px;
   padding: 25px;
 }
+
+.info-column{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: #bdbdbd solid 1px;
+  margin-top: 25px;
+  padding: 0 20px 25px 20px;
+  color: gray;
+}
+.info-button {
+  height: 40px;
+  width: 50px;
+  border-color: #bdbdbd solid 1px;
+  pointer-events: none;
+}
+.non-button {
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 100%;
+  border-bottom: #bdbdbd solid 1px;
+  padding: 25px;
+}
+.eee{
+  border-top: #bdbdbd solid 1px;
+}
+
+.blue-yes-no-container{
+  display: flex;
+  justify-content: space-around;
+  
+}
+.blue-yes-no {
+  background-color: white;
+  width: 35vw;
+  max-width: 170px;
+  height: 6.5vh;
+  min-height: 40px;
+  max-height: 60px;
+  border-radius: 10px;
+  border :#0064FF groove 1px;
+  color: #0064FF;
+}
+
+.duplicate-check{
+  width: 80px;
+  height: 40px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  background-color: transparent;
+  border:#0064FF solid 0.5px;
+  color: #0064FF;
+}
+.input-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items: flex-end;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.duplicate-checkbox{
+  border-bottom: solid black 1.6px;
+}
