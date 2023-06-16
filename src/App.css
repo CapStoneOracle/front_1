@@ -206,7 +206,6 @@
 }
 .map-place {
   margin-top: 5px;
-  border: red solid 5px;
   height: calc(100vh - 58px);
   position: relative;
 }
