@@ -1,17 +1,15 @@
 import React from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-const Recommend = ({restaurants}) => {
+const Recommend = () => {
   const navigate = useNavigate();
 
-
   const goRecommend = () => {
-    navigate('/home/recommend_page', { state: { restaurants } });
+    navigate('/home/recommend_page');
   };
-
   return (
     <div>
-     <img onClick={goRecommend} className='recommend-icon' src='/image/추천.png' />
+     <img onClick={goRecommend} className='recommend-icon' src='/image/따봉.jpg' alt='추천'/>
     </div>
   )
 }

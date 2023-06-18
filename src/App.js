@@ -12,7 +12,6 @@ import Home from './page/Home';
 import Mypage from './page/Mypage';
 import Myinfo from './page/Myinfo';
 import Logout from './page/Logout';
-import MyinfoRewrite from './page/MyinfoRewrite';
 import RecommendPage from './page/RecommendPage';
 import Suggest from './page/Suggest';
 import StoreInfo from './page/StoreInfo';
@@ -37,7 +36,6 @@ function App() {
       <Route path="/home" element={<Home/>}/>
       <Route path="/mypage" element={<Mypage/>}/>
       <Route path="/mypage/myinfo" element={<Myinfo/>}/>
-      <Route path="/mypage/info_rewrite" element={<MyinfoRewrite/>}/>
       <Route path="/home/recommend_page" element={<RecommendPage/>}/>
       <Route path="/mypage/suggest" element={<Suggest/>}/>
       <Route path="/store/:id" element={<StoreInfo/>}/>

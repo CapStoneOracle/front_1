@@ -14,8 +14,8 @@ const BackHomeNavbar = () => {
 
   return (
     <div className='back-home-navbar'>
-      <img className='back-icon' src='/image/back.png' onClick={goBack}/>
-      <img className='home-icon' src='/image/home.png' onClick={goHome}/>
+      <img className='back-icon' src='/image/back.png' alt='back' onClick={goBack}/>
+      <img className='home-icon' src='/image/home.png' alt='home' onClick={goHome}/>
     </div>
   )
 }
