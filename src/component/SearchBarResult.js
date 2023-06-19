@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React from 'react'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const SearchBar = (memId) => {
+const SearchBarResult = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
   const onIconClick = (path) => {
-    navigate(path, { state: { memId } });
+    navigate(path);
   };
 
   const handleSearch = () => {
-    navigate('/searchresult', { state: { searchQuery} }); // Pass the search query as state when navigating
+    navigate('/searchresult', { state: { searchQuery } }); // Pass the search query as state when navigating
   };
 
   const handleKeyPress = (e) => {
@@ -18,14 +19,17 @@ const SearchBar = (memId) => {
       handleSearch();
     }
   };
+  const goHome = () => {
+    navigate('/home');
+  };
 
   return (
     <div className='search-bar-on-map'>
       <img className='search-icon' src='/image/search.png'/>
       <input className='ft14r search-bar' type='text' placeholder='검색' value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={handleKeyPress} ></input>
-      <img className='mypage-icon' src='/image/mypage.png' onClick={() => onIconClick('/mypage', { state: { memId } })} />
+      <img className='home-result-icon' src='/image/home.png' alt='home' onClick={goHome}/>
     </div>
   )
 }
 
-export default SearchBar;
+export default SearchBarResult

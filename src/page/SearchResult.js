@@ -1,8 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import SearchBarResult from '../component/SearchBarResult';
+import UpIcon from '../component/UpIcon';
 
 const SearchResult = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const searchQuery = location.state?.searchQuery || '';
   const [restaurants, setRestaurants] = useState([]);
@@ -11,6 +14,11 @@ const SearchResult = () => {
     // Fetch search results when the component mounts
     search(searchQuery);
   }, [searchQuery]);
+
+  const handleRestaurantClick = (restaurantId) => {
+    navigate(`/store/${restaurantId}`, { state: { restaurantId } });
+    // Navigate to the StoreInfo component with the restaurant ID and search query
+  };
 
   const search = (keyword) => {
     axios
@@ -26,23 +34,18 @@ const SearchResult = () => {
 
   return (
     <div>
+      <SearchBarResult />
+      <UpIcon/>
+      <div className='search-result-padding' />
       {restaurants.map((restaurant) => (
-        <div key={restaurant.id} className="restaurant-item" style={styles.restaurantBox}>
-          <span className="restaurant-name">{restaurant.name}</span>
+        <div key={restaurant.id} className="search-result-box" onClick={() => handleRestaurantClick(restaurant.id)}>
+          <div className="ft24b">{restaurant.name}</div>
+          <div className='ft12r mt-2'>카테고리: {restaurant.category}</div>
+          <div className='ft12r mt-1'>전화번호: {restaurant.phonenum}</div>
         </div>
       ))}
     </div>
   );
-};
-
-const styles = {
-  restaurantBox: {
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    padding: '10px',
-    marginBottom: '10px',
-    cursor: 'pointer', // Add cursor style to indicate clickable element
-  },
 };
 
 export default SearchResult;

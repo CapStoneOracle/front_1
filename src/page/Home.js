@@ -14,6 +14,8 @@ const Home = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
+  
+
   const CLIENT_ID = 'rwaxemln73';
   let map = null;
   const navigate = useNavigate();
@@ -36,6 +38,7 @@ const Home = () => {
       center: new window.naver.maps.LatLng(latitude, longitude),
       zoom: 16,
     };
+    console.log(location.state?.memId)
 
     map = new window.naver.maps.Map('map', mapOptions);
 
@@ -59,11 +62,31 @@ const Home = () => {
       });
 
       const infoWindow = new window.naver.maps.InfoWindow({
-        content: `<div style="background-color: white; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">${location.state.name}</div>`,
+        content: `
+          <div class='info-window ft16b'>
+            ${location.state.name}<br>
+            <button class='info-db-button ft10r' onclick="handleButtonClick(event)">정보 확인</button>
+          </div>
+        `,
+        borderWidth: 0,
+        backgroundColor: 0,
+        anchorSize: { width: 0, height: 10 },
       });
+      
+      function handleButtonClick(event) {
+        event.preventDefault();
+        // Redirect to /store/:id
+        navigate(`/store/${location.state.id}`);
+      }
+      
+      window.handleButtonClick = handleButtonClick;
 
       window.naver.maps.Event.addListener(restaurantLocationMarker, 'click', () => {
         infoWindow.open(map, restaurantLocationMarker);
+      });
+
+      window.naver.maps.Event.addListener(restaurantLocationMarker, 'dblclick', () => {
+        infoWindow.close(map, restaurantLocationMarker);
       });
     }
     // Marker click event listener and additional logic
@@ -116,17 +139,16 @@ const Home = () => {
       }
     };
   }, []);
-
   return (
     <div>
-      <SearchBar/>
-      <div className='map-place'>
+      <SearchBar memId = {location.state?.memId}/>
+      <div>
       {address && <p>Address: {address}</p>}
-      <div style={{ width: '100%', height: '500px' }}>
-        <div id="map" style={{ width: '100%', height: '100%' }}></div>
+      <div className='map-place'>
+        <div id="map" style={{ height: '100vh' }}></div>
       </div>
       </div>
-      <Recommend restaurants={restaurants} />
+      <Recommend restaurants={restaurants} memId = {location.state?.memId} />
     </div>
   )
 }

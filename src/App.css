@@ -175,13 +175,14 @@
 
 .search-bar {
   background-color: #E0E0E0;
-  width: 100vw;
   height: 38px;
   filter: drop-shadow(0px 4px 4px #DADADA);
-  border: none;
+  border: white solid 0.5px;
   border-radius: 10px;
   padding: 0 40px;
-  margin: 8px;
+  margin: 8px 0 8px 8px;
+  width: calc(100vw - 53px);
+  max-width: 950px;
 }
 .search-bar::placeholder {
   color: #9E9E9E;
@@ -201,12 +202,9 @@
 .mypage-icon {
   width: 37px;
   height: 37px;
-  margin-top: 10px;
-  margin-right: 7px;
 }
 .map-place {
-  margin-top: 5px;
-  height: calc(100vh - 58px);
+  max-width: 1000px;
   position: relative;
 }
 .recommend-icon{
@@ -215,6 +213,7 @@
   position: absolute;
   bottom: 18px;
   right: 18px;
+  z-index: 1000;
 }
 .mypage-logo {
   display: flex;
@@ -247,11 +246,13 @@
   color: gray;
 }
 .info-button {
-  height: 40px;
-  width: 50px;
-  border-color: #bdbdbd solid 1px;
-  pointer-events: none;
+  height: 50px;
+  width: 60px;
+  border-radius: 6px;
+  border-color: #0064FF solid 1px;
+  background-color: transparent;
 }
+
 .non-button {
   background: none;
   border-top: none;
@@ -301,4 +302,74 @@
 }
 .duplicate-checkbox{
   border-bottom: solid black 1.6px;
+}
+
+.search-bar-on-map {
+  position: fixed;
+  z-index: 1000;
+}
+
+.search-result-box {
+  margin: 1.5rem auto;
+  width: 80vw;
+  border: none;
+  padding: 20px 30px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.search-result-padding {
+  border-bottom:#9E9E9E solid 1px;
+  padding-top: 65px;
+}
+.home-result-icon {
+  width: 33px;
+  height: 33px;
+  margin-left: 5px;
+}
+.info-window {
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 20);
+  text-align: center;
+}
+.info-db-button{
+  background-color: transparent;
+  border: none;
+  color: #0064FF;
+  margin-top: 10px;
+}
+.grade-star {
+  display: flex;
+  align-items: center;
+}
+.info-radio-place {
+  width: 100vw;
+  background-color: #fffde7;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.up-icon{
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 1000;
+}
+
+.review-box {
+  margin: 1rem 2rem; 
+}
+
+.no-review {
+  text-align: center;
+  padding-top: 20vh;
+}
+
+.modal-position {
+  padding-top: 30vh;
 }

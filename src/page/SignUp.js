@@ -10,6 +10,7 @@ import EmailDropDown from '../component/EmailDropDown';
 import DuplicateCheck from '../component/DuplicateCheck';
 import MatchCheck from '../component/MatchCheck';
 import axios from 'axios';
+import EmailCheckButton from '../component/EmailCheckButton';
 
 
 const SignUp = () => {
@@ -22,6 +23,8 @@ const SignUp = () => {
   const [emailDomain, setEmailDomain] = useState('');
   const [modalHeader, setModalHeader] = useState('');
   const [isVerificationModalOpen, setVerificationModalOpen] = useState(false); // State for verification modal
+  const [enteredCode, setEnteredCode] = useState(''); // User-entered verification code
+  const [sentCode, setSentCode] = useState(''); // Sent verification code
 
 
   // 회원가입 서버 연동
@@ -74,17 +77,17 @@ const SignUp = () => {
     const emailData = {
       email: emailBase + "@" + emailDomain
     };
-
+  
     axios
       .post(`http://localhost:8080/mail`, emailData)
       .then((response) => {
-        console.log(response.data); // Handle the response as needed
+        setSentCode(response.data); // Assuming the server sends the verification code as "code"
+        console.log('Sent verification code:', response.data); // Print the sent verification code
       })
       .catch((error) => {
         console.error(error);
       });
   };
-
 
   const handleEmailBaseChange = (event) => {
     setEmailBase(event.target.value);
@@ -114,6 +117,17 @@ const SignUp = () => {
     }
   };
 
+  const handleEmailNumberCheck = () => {
+    if (enteredCode === sentCode) {
+      setModalHeader('인증번호가 일치합니다.');
+    } else {
+      setModalHeader('인증번호가 일치하지 않습니다.');
+    }
+    handleVerificationModalOpen();
+  }
+
+  
+
   const handleVerificationModalOpen = () => {
     setVerificationModalOpen(true);
   };
@@ -142,7 +156,7 @@ const SignUp = () => {
           />
           {
             <DuplicateCheck
-              item="중복확인"
+              item="중복 확인"
               type="아이디"
               onClick={duplicateId}
             />
@@ -152,7 +166,7 @@ const SignUp = () => {
         <div className="email-input">
           <InputUnderBar
             className="mt-4"
-            style={{ maxWidth: '460px', width: '50vw' }}
+            style={{ maxWidth: '460px', width: '47vw' }}
             item="이메일을 입력해주세요."
             type="이메일"
             value={emailBase}
@@ -167,11 +181,22 @@ const SignUp = () => {
         <WarningMessage item1={'###################'} item2={'인증번호 발송'} onSendVerificationCode={email}/>
 
         <div className="signup-box">
+          <div className="input-check">
           <InputUnderBar
-            style={{ backgroundColor: '#f0f0f0' }}
+            style={{ backgroundColor: '#f0f0f0',maxWidth: '520px', width: '63vw' }}
             item="인증번호를 입력해주세요."
             type="인증번호"
+            value={enteredCode}
+            onChange={e => setEnteredCode(e.target.value)}
           />
+
+            <EmailCheckButton
+              item="인증 확인" 
+              onCheck={handleEmailNumberCheck}
+              modalHeader={modalHeader}
+            />
+          </div>
+
           {/* <WarningMessage
             style={{ marginTop: '30px' }}
             item1={'인증번호가 도착하지 않았다면?'}
@@ -181,7 +206,7 @@ const SignUp = () => {
 
         <InputUnderBar
           className="mt-4"
-          style={{ maxWidth: '600px' }}
+          style={{ maxWidth: '600px', width: '85vw' }}
           item="암호를 입력해주세요.(최소 8자 최대 12자)"
           type="암호"
           value={password}
@@ -211,7 +236,7 @@ const SignUp = () => {
           />
           {
             <DuplicateCheck
-              item="중복확인"
+              item="중복 확인"
               type="별명"
               onClick={duplicateName}
             />
