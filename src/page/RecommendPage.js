@@ -24,6 +24,8 @@ const RecommendPage = () => {
     });
   };
 
+  console.log(memId)
+
 
   return (
     <div>

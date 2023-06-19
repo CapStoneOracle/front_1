@@ -9,6 +9,7 @@ const SearchResult = () => {
   const location = useLocation();
   const searchQuery = location.state?.searchQuery || '';
   const [restaurants, setRestaurants] = useState([]);
+  console.log(location.state?.memId)
 
   useEffect(() => {
     // Fetch search results when the component mounts
@@ -34,7 +35,7 @@ const SearchResult = () => {
 
   return (
     <div>
-      <SearchBarResult />
+      <SearchBarResult memId={location.state?.memId}/>
       <UpIcon/>
       <div className='search-result-padding' />
       {restaurants.map((restaurant) => (

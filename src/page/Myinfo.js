@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import BackHomeNavbar from '../component/BackHomeNavbar';
 import RewriteModal from '../component/RewriteModal';
+import ConfirmModal from '../component/ConfirmModal';
+import axios from 'axios';
 
 const Myinfo = () => {
   const [modalOpen, setModalOpen] = useState({ nickname: false, email: false, password: false });
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [changedValue, setChangedValue] = useState('');
+  const [serverError, setServerError] = useState(false);
+
+  const location = useLocation();
+  const userData = location.state?.userdata;
+  const memId = location.state?.memId
 
   const handleModalOpen = (type) => {
     setModalOpen({ ...modalOpen, [type]: true });
@@ -14,48 +26,102 @@ const Myinfo = () => {
   };
 
   const handleConfirmChange = (title, value) => {
-    console.log(`${title} 변경될 값: `, value);
+    setChangedValue(value);
     handleModalClose(title);
-    // 여기에 변경 이벤트를 정의하십시오
   };
+
+  const handleConfirm = async (title) => {
+    try {
+      await axios.post('http://localhost:8080/updateUserInfo', {
+        memId,
+        title,
+        value: changedValue
+      });
+
+      if (title === '별명') {
+        setNickname(changedValue);
+      } else if (title === '이메일') {
+        setEmail(changedValue);
+      } else if (title === '비밀 번호') {
+        setPassword(changedValue);
+      }
+
+      setChangedValue('');
+    } catch (error) {
+      console.error(error);
+      setServerError(true);
+    }
+  };
+
+  useEffect(() => {
+    if (userData) {
+      console.log(userData)
+    }
+  }, [userData]);
 
   return (
     <div>
-      <BackHomeNavbar />
+      <BackHomeNavbar memId={memId} />
       <div className='fafafa'>
         <div className='mypage-logo'>
           <img className='logo-style' src='/image/로고.png' alt='Logo' />
         </div>
         <div className='ft14r'>
-          <div className='info-column'/>
+          <div className='info-column' />
           <div className='info-column'>
             <div>
               <div>별명</div>
-              <div>#####</div>
+              <div>{userData[0] && userData[0].memberName}</div>
+              <div>{serverError ? '서버 연결 필요' : changedValue ? changedValue : nickname}</div>
             </div>
-            <button className='info-button' onClick={() => handleModalOpen("nickname")}>변경</button>
-            <RewriteModal show={modalOpen.nickname} title="별명" onClose={() => handleModalClose("nickname")} onConfirm={(value) => handleConfirmChange("별명", value)} />
+            <button className='info-button' onClick={() => handleModalOpen('nickname')}>
+              변경
+            </button>
+            <RewriteModal
+              show={modalOpen.nickname}
+              title='별명'
+              onClose={() => handleModalClose('nickname')}
+              onConfirm={(value) => handleConfirmChange('별명', value)}
+            />
+            <ConfirmModal show={changedValue !== ''} onConfirm={() => handleConfirm('별명')} onCancel={() => setChangedValue('')} />
           </div>
           <div className='info-column'>
             <div>
               <div>이메일</div>
-              <div>#######</div>
+              <div>{userData[0] && userData[0].memberEmail}</div>
+              <div>{serverError ? '서버 연결 필요' : changedValue ? changedValue : email}</div>
             </div>
-            <button className='info-button' onClick={() => handleModalOpen("email")}>변경</button>
-            <RewriteModal show={modalOpen.email} title="이메일" onClose={() => handleModalClose("email")} onConfirm={(value) => handleConfirmChange("이메일", value)} />
+            <button className='info-button' onClick={() => handleModalOpen('email')}>
+              변경
+            </button>
+            <RewriteModal
+              show={modalOpen.email}
+              title='이메일'
+              onClose={() => handleModalClose('email')}
+              onConfirm={(value) => handleConfirmChange('이메일', value)}
+            />
+            <ConfirmModal show={changedValue !== ''} onConfirm={() => handleConfirm('이메일')} onCancel={() => setChangedValue('')} />
           </div>
           <div className='info-column'>
             <div>
               <div>비밀 번호</div>
-              <div>#######</div>
+              <div>{serverError ? '서버 연결 필요' : changedValue ? changedValue : password}</div>
             </div>
-            <button className='info-button' onClick={() => handleModalOpen("password")}>변경</button>
-            <RewriteModal show={modalOpen.password} title="비밀 번호" onClose={() => handleModalClose("password")} onConfirm={(value) => handleConfirmChange("비밀 번호", value)} />
+            <button className='info-button' onClick={() => handleModalOpen('password')}>
+              변경
+            </button>
+            <RewriteModal
+              show={modalOpen.password}
+              title='비밀 번호'
+              onClose={() => handleModalClose('password')}
+              onConfirm={(value) => handleConfirmChange('비밀 번호', value)}
+            />
+            <ConfirmModal show={changedValue !== ''} onConfirm={() => handleConfirm('비밀 번호')} onCancel={() => setChangedValue('')} />
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Myinfo;

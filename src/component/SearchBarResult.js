@@ -1,17 +1,17 @@
 import React from 'react'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const SearchBarResult = () => {
+const SearchBarResult = ({memId}) => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
-  const onIconClick = (path) => {
-    navigate(path);
-  };
+  // const onIconClick = (path) => {
+  //   navigate(path);
+  // };
 
   const handleSearch = () => {
-    navigate('/searchresult', { state: { searchQuery } }); // Pass the search query as state when navigating
+    navigate('/searchresult', { state: { searchQuery, memId } }); // Pass the search query as state when navigating
   };
 
   const handleKeyPress = (e) => {
@@ -20,7 +20,7 @@ const SearchBarResult = () => {
     }
   };
   const goHome = () => {
-    navigate('/home');
+    navigate('/home', {state: {memId}});
   };
 
   return (

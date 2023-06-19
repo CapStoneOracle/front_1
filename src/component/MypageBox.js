@@ -1,11 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const MypageBox = ({ item, path }) => {
+const MypageBox = ({ item, path, userdata, memId }) => {
   const navigate = useNavigate();
 
+  console.log(memId)
+
   const handleClick = () => {
-    navigate(path);
+    navigate(path, {state: {userdata, memId}});
   };
 
   return (
