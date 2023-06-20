@@ -18,7 +18,7 @@ const Myinfo = () => {
   const memId = location.state?.memId
 
   const handleModalOpen = (type) => {
-    setModalOpen({ ...modalOpen, [type]: true });
+    setModalOpen({ ...modalOpen, [type]: true, memId: memId });
   };
 
   const handleModalClose = (type) => {
@@ -32,32 +32,48 @@ const Myinfo = () => {
 
   const handleConfirm = async (title) => {
     try {
-      await axios.post('http://localhost:8080/updateUserInfo', {
-        memId,
-        title,
-        value: changedValue
-      });
-
       if (title === '별명') {
+        await axios.put('http://localhost:8080/change/name', null, {
+          params: {
+            id: memId,
+            name: changedValue
+          }
+        });
         setNickname(changedValue);
       } else if (title === '이메일') {
+        await axios.put('http://localhost:8080/change/email', null, {
+          params: {
+            id: memId,
+            email: changedValue
+          }
+        });
         setEmail(changedValue);
       } else if (title === '비밀 번호') {
+        await axios.put('http://localhost:8080/change/password', null, {
+          params: {
+            id: memId,
+            password: changedValue
+          }
+        });
         setPassword(changedValue);
       }
-
+  
       setChangedValue('');
     } catch (error) {
       console.error(error);
       setServerError(true);
     }
   };
+  
+
+
 
   useEffect(() => {
     if (userData) {
       console.log(userData)
     }
   }, [userData]);
+
 
   return (
     <div>
@@ -74,16 +90,17 @@ const Myinfo = () => {
               <div>{userData[0] && userData[0].memberName}</div>
               <div>{serverError ? '서버 연결 필요' : changedValue ? changedValue : nickname}</div>
             </div>
-            <button className='info-button' onClick={() => handleModalOpen('nickname')}>
+            <button className='info-button' onClick={() => handleModalOpen('nickname', memId)}>
               변경
             </button>
             <RewriteModal
               show={modalOpen.nickname}
-              title='별명'
+              title="별명"
               onClose={() => handleModalClose('nickname')}
               onConfirm={(value) => handleConfirmChange('별명', value)}
+              memId={memId} // Pass the memId prop to RewriteModal
             />
-            <ConfirmModal show={changedValue !== ''} onConfirm={() => handleConfirm('별명')} onCancel={() => setChangedValue('')} />
+            <ConfirmModal show={changedValue !== ''} onConfirm={() => handleConfirm('별명')} onCancel={() => setChangedValue('')} memId={memId} />
           </div>
           <div className='info-column'>
             <div>
@@ -99,12 +116,14 @@ const Myinfo = () => {
               title='이메일'
               onClose={() => handleModalClose('email')}
               onConfirm={(value) => handleConfirmChange('이메일', value)}
+              memId={memId}
             />
-            <ConfirmModal show={changedValue !== ''} onConfirm={() => handleConfirm('이메일')} onCancel={() => setChangedValue('')} />
+            <ConfirmModal show={changedValue !== ''} onConfirm={() => handleConfirm('이메일')} onCancel={() => setChangedValue('')} memId={memId} />
           </div>
           <div className='info-column'>
             <div>
               <div>비밀 번호</div>
+              <div>{userData[0] && userData[0].memberPassword}</div>
               <div>{serverError ? '서버 연결 필요' : changedValue ? changedValue : password}</div>
             </div>
             <button className='info-button' onClick={() => handleModalOpen('password')}>
@@ -115,8 +134,9 @@ const Myinfo = () => {
               title='비밀 번호'
               onClose={() => handleModalClose('password')}
               onConfirm={(value) => handleConfirmChange('비밀 번호', value)}
+              memId={memId}
             />
-            <ConfirmModal show={changedValue !== ''} onConfirm={() => handleConfirm('비밀 번호')} onCancel={() => setChangedValue('')} />
+            <ConfirmModal show={changedValue !== ''} onConfirm={() => handleConfirm('비밀 번호')} onCancel={() => setChangedValue('')} memId={memId} />
           </div>
         </div>
       </div>

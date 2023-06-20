@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-const ConfirmModal = ({ show, onCancel, onConfirm }) => {
+const ConfirmModal = ({ show, onCancel, onConfirm, memId }) => {
   const handleClose = () => {
     onCancel();
   };

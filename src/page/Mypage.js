@@ -60,9 +60,10 @@ const Mypage = () => {
           <MypageBox item='' path='' userdata={userData} memId={memId}/>
           <MypageBox item='내 정보' path='/mypage/myinfo' userdata={userData} memId={memId}/>
           <button className='non-button mypage-box' onClick={openModal}>로그아웃</button>
-          <Modal open={modalOpen} close={closeModal} header="로그아웃 하시겠습니까?">
+          <Modal open={modalOpen} close={closeModal} header="로그아웃 하시겠습니까?" memId={memId}>
             <div>
-              <button className="yes-button" onClick={handleYes}>예</button>
+              <button className="yes-button"
+              onClick={handleYes}>예</button>
               <button className="no-button" onClick={handleNo}>아니오</button>
             </div>
           </Modal>

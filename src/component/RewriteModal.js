@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
 import ConfirmModal from './ConfirmModal';
 
-const RewriteModal = ({ show, title, onClose }) => {
+const RewriteModal = ({ show, title, onClose, memId }) => {
   const [value, setValue] = useState('');
   const [confirmShow, setConfirmShow] = useState(false);
 

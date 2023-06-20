@@ -97,8 +97,8 @@ const Home = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          setLatitude(37.626251);
-          setLongitude(127.072495);
+          setLatitude(37.654692);
+          setLongitude(127.060587);
         },
         (error) => {
           console.error(error);
