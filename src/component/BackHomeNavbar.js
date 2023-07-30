@@ -21,4 +21,3 @@ const BackHomeNavbar = () => {
 }
 
 export default BackHomeNavbar
-
